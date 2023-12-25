@@ -1,0 +1,14 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+{% block content %}
+  <fieldset class="module">
+    <div class="container">
+      <h2>Empiece a preparar su proximo pedido</h2>
+      <img src="{% static 'img/frutas-verduras.jpg' %}" width="800" height="300" style="border-radius: 10px; border: 1px solid black;">
+      <br>
+    </div>
+    <br>  
+  </fieldset>
+  {{ block.super }}
+{% endblock %}
+

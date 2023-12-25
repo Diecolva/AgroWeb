@@ -1,0 +1,17 @@
+
+body {
+    background-image: url("/static/img/fondo2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login {
+    background-color: #161515;  
+    border-radius: 30px;   
+    box-shadow: 10 10 10px rgba(0, 0, 0, 0.1);  
+}
+
+.card{
+    border-radius: 10px;
+}
