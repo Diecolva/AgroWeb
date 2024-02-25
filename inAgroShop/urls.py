@@ -16,17 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inApp.views import VerDetalleView
+from inApp.views import VerDetalleView, ConfirmarCompraView
 from django.urls import re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 
-
 urlpatterns = [
-    path('', admin.site.urls),
-    # path('', views.index, name='intranet-index'), 
-    path('admin/ver_detalle/<int:orden_id>/', VerDetalleView.as_view(), name='ver_detalle'),
-    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('inApp/admin/ver_detalle/<int:orden_id>/', VerDetalleView.as_view(), name='ver_detalle'),
+    path('confirmar/', ConfirmarCompraView.as_view(), name='confirmar'),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    # Tus rutas adicionales van aquí
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# Añade las URL de Django Admin al final
+urlpatterns += [
+    path('', admin.site.urls),
+]

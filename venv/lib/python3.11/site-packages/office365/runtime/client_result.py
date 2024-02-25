@@ -1,0 +1,69 @@
+import copy
+from typing import TYPE_CHECKING, Any, Callable, Generic, Optional, TypeVar
+
+from typing_extensions import Self
+
+if TYPE_CHECKING:
+    from office365.runtime.client_runtime_context import ClientRuntimeContext  # noqa
+    from office365.runtime.client_value import ClientValue  # noqa
+
+T = TypeVar("T")
+
+
+class ClientResult(Generic[T]):
+    """Client result"""
+
+    def __init__(self, context, default_value=None):
+        # type: (ClientRuntimeContext, Optional[T]) -> None
+        """Client result"""
+        self._context = context
+        self._value = copy.deepcopy(default_value)  # type: T
+
+    def before_execute(self, action, *args, **kwargs):
+        """
+        Attach an event handler which is triggered before query is submitted to server
+        :param (office365.runtime.http.request_options.RequestOptions) -> None action: Event handler
+        """
+        self._context.before_query_execute(action, *args, **kwargs)
+        return self
+
+    def after_execute(self, action, *args, **kwargs):
+        # type: (Callable[[Self], None], Any, Any) -> Self
+        """
+        Attach an event handler which is triggered after query is submitted to server
+        :param (ClientResult) -> None action: Event handler
+        """
+        self._context.after_query_execute(action, self, *args, **kwargs)
+        return self
+
+    def set_property(self, key, value, persist_changes=False):
+        # type: (str, T, bool) -> Self
+        from office365.runtime.client_value import ClientValue  # noqa
+
+        if isinstance(self._value, ClientValue):
+            self._value.set_property(key, value, persist_changes)
+        else:
+            self._value = value
+        return self
+
+    @property
+    def value(self):
+        """Returns the value"""
+        return self._value
+
+    def execute_query(self):
+        """Submit request(s) to the server"""
+        self._context.execute_query()
+        return self
+
+    def execute_query_retry(
+        self, max_retry=5, timeout_secs=5, success_callback=None, failure_callback=None
+    ):
+        """Executes the current set of data retrieval queries and method invocations and retries it if needed."""
+        self._context.execute_query_retry(
+            max_retry=max_retry,
+            timeout_secs=timeout_secs,
+            success_callback=success_callback,
+            failure_callback=failure_callback,
+        )
+        return self

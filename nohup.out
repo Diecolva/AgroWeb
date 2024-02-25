@@ -1,0 +1,460 @@
+Watching for file changes with StatReloader
+Error: That port is already in use.
+Watching for file changes with StatReloader
+[27/Dec/2023 18:38:33] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 18:38:43] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 18:38:48] "GET /static/img/custom_admin.css HTTP/1.1" 200 330
+[27/Dec/2023 18:38:51] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 59344
+[27/Dec/2023 18:38:51] "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 62440
+[27/Dec/2023 18:38:52] "GET /static/jazzmin/css/main.css HTTP/1.1" 200 16969
+[27/Dec/2023 18:38:55] "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 44244
+[27/Dec/2023 18:38:57] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[27/Dec/2023 18:38:59] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:39:00] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 1382975
+[27/Dec/2023 18:39:03] "GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 78196
+[27/Dec/2023 18:39:04] "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13276
+[27/Dec/2023 18:39:48] "GET /static/img/fondo2.jpg HTTP/1.1" 200 13151568
+[27/Dec/2023 18:39:51] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:39:51,766] - Broken pipe from ('186.11.126.144', 24744)
+[27/Dec/2023 18:40:12] "GET / HTTP/1.1" 200 23284
+[27/Dec/2023 18:40:17] "GET /static/jazzmin/css/main.css HTTP/1.1" 200 16969
+[27/Dec/2023 18:40:18] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 59344
+[27/Dec/2023 18:40:28] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:40:28] "GET /static/img/custom_admin.css HTTP/1.1" 200 330
+[27/Dec/2023 18:40:30] "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 62440
+[27/Dec/2023 18:40:39] "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 44244
+[27/Dec/2023 18:40:39] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[27/Dec/2023 18:40:40] "GET /static/jazzmin/js/main.js HTTP/1.1" 200 2391
+[27/Dec/2023 18:41:03] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 1382975
+[27/Dec/2023 18:41:28] "GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 78196
+[27/Dec/2023 18:41:28] "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13276
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/pymysql/connections.py", line 644, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 851, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.11/socket.py", line 836, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/mysql/base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/pymysql/connections.py", line 358, in __init__
+    self.connect()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/pymysql/connections.py", line 711, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([Errno 111] Connection refused)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/core/management/commands/runserver.py", line 136, in inner_run
+    self.check_migrations()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/core/management/base.py", line 574, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/migrations/loader.py", line 58, in __init__
+    self.build_graph()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/migrations/loader.py", line 235, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/migrations/recorder.py", line 81, in applied_migrations
+    if self.has_table():
+       ^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/migrations/recorder.py", line 57, in has_table
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/django/db/backends/mysql/base.py", line 247, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/pymysql/connections.py", line 358, in __init__
+    self.connect()
+  File "/root/AgroWeb/venv/lib/python3.11/site-packages/pymysql/connections.py", line 711, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([Errno 111] Connection refused)")
+[27/Dec/2023 18:41:30] "GET /static/img/fondo2.jpg HTTP/1.1" 200 13151568
+[27/Dec/2023 18:41:30] "GET /static/img/agroshop.png HTTP/1.1" 304 0
+[27/Dec/2023 18:41:30] "GET /static/img/agroshop.png HTTP/1.1" 304 0
+[27/Dec/2023 18:41:48] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:41:52] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 18:41:55] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:41:57] "GET /static/jazzmin/css/main.css HTTP/1.1" 304 0
+[27/Dec/2023 18:41:57] "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[27/Dec/2023 18:41:57] "GET /static/img/custom_admin.css HTTP/1.1" 304 0
+[27/Dec/2023 18:41:58] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:41:58] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[27/Dec/2023 18:42:00] "GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+[27/Dec/2023 18:42:00] "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 304 0
+[27/Dec/2023 18:42:00] "GET /static/img/fondo2.jpg HTTP/1.1" 304 0
+[27/Dec/2023 18:42:00] "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+[27/Dec/2023 18:42:00] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:42:13] "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff HTTP/1.1" 200 16276
+[27/Dec/2023 18:42:16] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 18:42:18] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[27/Dec/2023 18:42:18] "GET /static/img/custom_admin.css HTTP/1.1" 304 0
+[27/Dec/2023 18:42:18] "GET /static/jazzmin/css/main.css HTTP/1.1" 304 0
+[27/Dec/2023 18:42:18] "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[27/Dec/2023 18:42:19] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:42:19] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:42:19] "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 304 0
+[27/Dec/2023 18:42:20] "GET /static/img/fondo2.jpg HTTP/1.1" 304 0
+[27/Dec/2023 18:42:20] "GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+[27/Dec/2023 18:42:20] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:42:21] "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13276
+[27/Dec/2023 18:42:23] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:42:26] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 18:53:50] "GET /logout/ HTTP/1.1" 200 2145
+[27/Dec/2023 18:53:52] "GET /static/jazzmin/css/main.css HTTP/1.1" 304 0
+[27/Dec/2023 18:53:53] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:53:54] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:54:00] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[27/Dec/2023 18:54:02] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 18:54:05] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 18:54:09] "GET /static/jazzmin/css/main.css HTTP/1.1" 304 0
+[27/Dec/2023 18:54:09] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 304 0
+[27/Dec/2023 18:54:12] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 304 0
+[27/Dec/2023 19:04:14] code 400, message Bad request version ('("í\x93ÿTCfm?z¶\x19ä0\x1açv\x94lú\x1a¡\x00b\x13\x02\x13\x03\x13\x01À,À0À+À/Ì©Ì¨\x00£\x00\x9f\x00¢\x00\x9eÌªÀ¯À\xadÀ$À(À')
+[27/Dec/2023 19:04:15] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 19:04:17] "GET /.env HTTP/1.1" 302 0
+[27/Dec/2023 19:39:37,352] - Broken pipe from ('167.248.133.50', 56994)
+[27/Dec/2023 19:39:43] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 19:39:46,483] - Broken pipe from ('167.248.133.50', 34554)
+[27/Dec/2023 19:39:53] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 19:39:54] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:39:54] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:40:00] "GET /login HTTP/1.1" 302 0
+[27/Dec/2023 19:40:01] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:40:01] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:40:08] "GET /login HTTP/1.1" 302 0
+[27/Dec/2023 19:40:09] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:40:09] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:40:17] "GET /login HTTP/1.1" 302 0
+[27/Dec/2023 19:40:18] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:40:18] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:40:24] "GET /login HTTP/1.1" 302 0
+[27/Dec/2023 19:40:24] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:40:24] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:40:28] "GET /login HTTP/1.1" 302 0
+[27/Dec/2023 19:40:29] code 505, message Invalid HTTP version (2.0)
+[27/Dec/2023 19:40:30] "PRI * HTTP/2.0" 505 -
+[27/Dec/2023 19:41:05] "GET / HTTP/1.0" 302 0
+[27/Dec/2023 19:42:22] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 19:42:25] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 19:42:26] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[27/Dec/2023 20:02:51] "GET /robots.txt HTTP/1.1" 302 0
+[27/Dec/2023 20:02:57] "GET /login/?next=/robots.txt HTTP/1.1" 200 3115
+[27/Dec/2023 20:02:59] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 20:03:01] "GET /login/?next=/ HTTP/1.1" 200 3105
+[27/Dec/2023 20:03:28] "GET /static/img/custom_admin.css HTTP/1.1" 200 330
+[27/Dec/2023 20:03:28] "GET /static/jazzmin/css/main.css HTTP/1.1" 200 16969
+[27/Dec/2023 20:03:31] "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 59344
+[27/Dec/2023 20:03:33] "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 62440
+[27/Dec/2023 20:03:34] "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 44244
+[27/Dec/2023 20:03:35] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[27/Dec/2023 20:03:38] "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 1382975
+[27/Dec/2023 20:22:39] "GET /aaa9 HTTP/1.1" 302 0
+[27/Dec/2023 20:22:40] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03|Ä\x9aóS\x80)°U{{e×9bVHìæøÊW\x13u\x80\x9bd@)´(z\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+[27/Dec/2023 20:22:40] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 20:22:42] "GET /aab8 HTTP/1.1" 302 0
+[27/Dec/2023 20:22:43] code 400, message Bad request version ('À\x14À')
+[27/Dec/2023 20:22:43] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 20:22:44] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 20:22:45] code 400, message Bad request version ('\x19H')
+[27/Dec/2023 20:22:46] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 20:27:47,578] - Broken pipe from ('69.164.217.245', 40905)
+[27/Dec/2023 20:27:51] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 20:27:51,549] - Broken pipe from ('69.164.217.245', 40906)
+[27/Dec/2023 20:28:10] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 20:38:08] code 400, message Bad request version ('À\x14À')
+[27/Dec/2023 20:38:09] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 20:46:47,501] - Broken pipe from ('69.164.217.74', 40383)
+[27/Dec/2023 20:47:00] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 20:47:07,072] - Broken pipe from ('69.164.217.74', 40384)
+[27/Dec/2023 20:48:27] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 21:12:32,222] - Broken pipe from ('172.104.210.105', 41532)
+[27/Dec/2023 21:12:32] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 21:12:32,710] - Broken pipe from ('172.104.210.105', 41533)
+[27/Dec/2023 21:12:44] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 21:25:30] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[27/Dec/2023 21:25:30] "  /*à     Cookie: mstshash=Administr" 400 -
+[27/Dec/2023 21:45:53] code 400, message Bad request version ('À\x13À')
+[27/Dec/2023 21:45:53] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 21:45:53] code 400, message Bad request version ('À(À$À\x14À')
+[27/Dec/2023 21:45:53] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 22:10:43] code 400, message Bad request version ('À\x14À')
+[27/Dec/2023 22:10:43] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 22:13:35,926] - Broken pipe from ('45.79.168.172', 59769)
+[27/Dec/2023 22:13:36] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:13:36,704] - Broken pipe from ('45.79.168.172', 59770)
+[27/Dec/2023 22:14:26] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:32:33,385] - Broken pipe from ('45.79.168.172', 39006)
+[27/Dec/2023 22:32:33] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:32:33,702] - Broken pipe from ('45.79.168.172', 39007)
+[27/Dec/2023 22:32:56] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:43:03,676] - Broken pipe from ('172.104.210.105', 52027)
+[27/Dec/2023 22:43:05] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:43:05,462] - Broken pipe from ('172.104.210.105', 52028)
+[27/Dec/2023 22:43:29] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:46:05,610] - Broken pipe from ('45.79.163.53', 60716)
+[27/Dec/2023 22:46:14] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 22:46:18,367] - Broken pipe from ('45.79.163.53', 60717)
+[27/Dec/2023 22:46:19] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00u\x01\x00\x00q\x03\x03=äÐò¥\x17Æ±ÿ,\x90òÙ\x04z\x06\x11Þ¿Ø¯\x07È\x8eØ[\x04ý"kÿ\x1b\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+[27/Dec/2023 22:46:19] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 22:46:46] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:14:08,033] - Broken pipe from ('69.164.217.74', 43622)
+[27/Dec/2023 23:14:18] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:14:24,115] - Broken pipe from ('69.164.217.74', 43623)
+[27/Dec/2023 23:14:24] code 400, message Bad request version ('À\x14À')
+[27/Dec/2023 23:14:24] You're accessing the development server over HTTPS, but it only supports HTTP.
+[27/Dec/2023 23:15:08] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:17:03,168] - Broken pipe from ('69.164.217.245', 46046)
+[27/Dec/2023 23:17:05] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:17:05,967] - Broken pipe from ('69.164.217.245', 46047)
+[27/Dec/2023 23:17:31] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:27:06] "GET / HTTP/1.0" 302 0
+[27/Dec/2023 23:32:22,110] - Broken pipe from ('45.79.163.53', 37565)
+[27/Dec/2023 23:32:22] "GET / HTTP/1.1" 302 0
+[27/Dec/2023 23:32:22,936] - Broken pipe from ('45.79.163.53', 37566)
+[27/Dec/2023 23:32:44] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 00:01:36] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 00:01:36] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 00:31:40,733] - Broken pipe from ('69.164.217.74', 36134)
+[28/Dec/2023 00:31:57] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00u\x01\x00\x00q\x03\x03¯\x81/\x90«Þ8ó(ð=£-\x08X<À¥qº\x9e\xadù{\x17K\x1bo1¿h\x14\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+[28/Dec/2023 00:31:59] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 00:32:41] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00&!à\x00\x00þÊ\x00Cookie:')
+[28/Dec/2023 00:32:42] "  &!à  þÊ Cookie: mstshash=" 400 -
+[28/Dec/2023 00:34:51] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 00:56:43,902] - Broken pipe from ('69.164.217.74', 57428)
+[28/Dec/2023 00:56:44] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 00:56:44,752] - Broken pipe from ('69.164.217.74', 57429)
+[28/Dec/2023 00:57:00] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 01:42:06] "GET /.env HTTP/1.1" 302 0
+[28/Dec/2023 01:42:08] "GET /login/?next=/.env HTTP/1.1" 200 3109
+[28/Dec/2023 01:42:10] "GET /api/.env HTTP/1.1" 302 0
+[28/Dec/2023 01:42:12] "GET /login/?next=/api/.env HTTP/1.1" 200 3113
+[28/Dec/2023 01:42:15] "GET /laravel/.env HTTP/1.1" 302 0
+[28/Dec/2023 01:42:16] "GET /login/?next=/laravel/.env HTTP/1.1" 200 3117
+[28/Dec/2023 02:36:33,430] - Broken pipe from ('45.79.163.53', 49816)
+[28/Dec/2023 02:36:35] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 02:36:35,317] - Broken pipe from ('45.79.163.53', 49817)
+[28/Dec/2023 02:36:57] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 02:50:50,385] - Broken pipe from ('45.79.168.172', 49336)
+[28/Dec/2023 02:50:51] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 02:50:52,006] - Broken pipe from ('45.79.168.172', 49337)
+[28/Dec/2023 02:51:42] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 02:52:07] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 02:52:07] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 02:59:12] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 02:59:13] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 03:33:35] code 400, message Bad request version ('\x00/\x00')
+[28/Dec/2023 03:33:35] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 03:33:36] "GET /Qjq0 HTTP/1.1" 302 0
+[28/Dec/2023 03:33:37] "GET /login/?next=/Qjq0 HTTP/1.1" 200 3109
+[28/Dec/2023 03:33:40] "GET /Jj0y HTTP/1.1" 302 0
+[28/Dec/2023 03:33:41] "GET /login/?next=/Jj0y HTTP/1.1" 200 3109
+[28/Dec/2023 03:37:23] "GET /.env HTTP/1.1" 302 0
+[28/Dec/2023 04:56:27] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 302 0
+[28/Dec/2023 04:59:18] "GET /.env HTTP/1.1" 302 0
+Forbidden (CSRF cookie not set.): /
+[28/Dec/2023 04:59:19] "POST / HTTP/1.1" 403 2922
+[28/Dec/2023 05:22:54] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 05:22:59] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 05:35:57] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 05:41:46] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 05:49:36,998] - Broken pipe from ('45.79.168.172', 51299)
+[28/Dec/2023 05:49:38] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 05:49:38,845] - Broken pipe from ('45.79.168.172', 51300)
+[28/Dec/2023 05:49:46] "GET / HTTP/1.1" 302 0
+Forbidden (CSRF cookie not set.): /boaform/admin/formLogin
+[28/Dec/2023 05:57:19] "POST /boaform/admin/formLogin HTTP/1.1" 403 2922
+[28/Dec/2023 06:16:17] code 400, message Bad request version ('\x95\x87Å\x16©\x17Ê\x00b\x13\x02\x13\x03\x13\x01À,À0À+À/Ì©Ì¨\x00£\x00\x9f\x00¢\x00\x9eÌªÀ¯À\xadÀ$À(À')
+[28/Dec/2023 06:16:19] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 06:17:07] "GET /.env HTTP/1.1" 302 0
+[28/Dec/2023 06:26:30] "GET /actuator/gateway/routes HTTP/1.1" 302 0
+[28/Dec/2023 06:26:31] "GET /login/?next=/actuator/gateway/routes HTTP/1.1" 200 3128
+[28/Dec/2023 06:27:32] "GET /.env HTTP/1.1" 302 0
+Forbidden (CSRF cookie not set.): /
+[28/Dec/2023 06:27:33] "POST / HTTP/1.1" 403 2922
+[28/Dec/2023 06:58:14,106] - Broken pipe from ('172.104.210.105', 55124)
+[28/Dec/2023 06:58:15] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 06:58:15,152] - Broken pipe from ('172.104.210.105', 55125)
+[28/Dec/2023 06:58:30] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 07:07:02] code 400, message Bad request version ('ÀeÂ©]\x00')
+[28/Dec/2023 07:07:02] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 07:07:08] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 07:25:47,525] - Broken pipe from ('172.104.210.105', 37532)
+[28/Dec/2023 07:26:57] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 07:31:18] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 07:31:18] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 07:39:15] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 07:52:05] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 07:52:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 07:57:47] code 400, message Bad request version ('I¢ÿ3¾r*[Åm')
+[28/Dec/2023 07:57:47] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 07:57:49] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 08:14:44,800] - Broken pipe from ('45.33.87.154', 45022)
+[28/Dec/2023 08:14:44] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 08:14:45,005] - Broken pipe from ('45.33.87.154', 45023)
+[28/Dec/2023 08:15:15] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 08:16:04,967] - Broken pipe from ('167.94.146.56', 38508)
+[28/Dec/2023 08:16:08] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 08:16:09,171] - Broken pipe from ('167.94.146.56', 32844)
+[28/Dec/2023 08:16:13] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 08:16:13] code 505, message Invalid HTTP version (2.0)
+[28/Dec/2023 08:16:13] "PRI * HTTP/2.0" 505 -
+[28/Dec/2023 08:16:18] "GET /login HTTP/1.1" 302 0
+[28/Dec/2023 08:16:18] code 505, message Invalid HTTP version (2.0)
+[28/Dec/2023 08:16:18] "PRI * HTTP/2.0" 505 -
+[28/Dec/2023 08:16:25] "GET /login HTTP/1.1" 302 0
+[28/Dec/2023 08:16:26] code 505, message Invalid HTTP version (2.0)
+[28/Dec/2023 08:16:26] "PRI * HTTP/2.0" 505 -
+[28/Dec/2023 08:16:46] "GET /login HTTP/1.1" 302 0
+[28/Dec/2023 08:25:49,630] - Broken pipe from ('192.155.88.231', 41903)
+[28/Dec/2023 08:25:50] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 08:25:50,177] - Broken pipe from ('192.155.88.231', 41904)
+[28/Dec/2023 08:26:06] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 09:05:31] "GET /_profiler/phpinfo HTTP/1.1" 302 0
+[28/Dec/2023 09:05:34] "GET /debug/default/view?panel=config HTTP/1.1" 302 0
+[28/Dec/2023 09:06:32,369] - Broken pipe from ('172.104.210.105', 47558)
+[28/Dec/2023 09:07:14] code 400, message Bad request version ('Å~²}f')
+[28/Dec/2023 09:07:19] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 09:08:04,047] - Broken pipe from ('172.104.210.105', 47562)
+[28/Dec/2023 09:08:04] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00&!à\x00\x00þÊ\x00Cookie:')
+[28/Dec/2023 09:08:04] "  &!à  þÊ Cookie: mstshash=" 400 -
+[28/Dec/2023 09:08:21] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 09:12:58,973] - Broken pipe from ('192.155.88.231', 51991)
+[28/Dec/2023 09:13:16] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 09:13:20] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 09:13:39,924] - Broken pipe from ('192.155.88.231', 51995)
+[28/Dec/2023 09:13:52,784] - Broken pipe from ('192.155.88.231', 51996)
+[28/Dec/2023 09:13:53] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00&!à\x00\x00þÊ\x00Cookie:')
+[28/Dec/2023 09:13:53] "  &!à  þÊ Cookie: mstshash=" 400 -
+[28/Dec/2023 09:15:16] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 09:19:20] "GET /.env HTTP/1.1" 302 0
+[28/Dec/2023 09:20:24] code 400, message Bad request version ('À\x13À')
+[28/Dec/2023 09:20:24] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 09:20:25] "GET /logd HTTP/1.1" 302 0
+[28/Dec/2023 09:20:26] code 400, message Bad request version ('À\x13À')
+[28/Dec/2023 09:20:26] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 10:16:14,860] - Broken pipe from ('69.164.217.74', 40699)
+[28/Dec/2023 10:16:41] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 10:16:44] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 10:17:47] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00&!à\x00\x00þÊ\x00Cookie:')
+[28/Dec/2023 10:17:47] "  &!à  þÊ Cookie: mstshash=" 400 -
+[28/Dec/2023 10:18:10] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 10:20:25,193] - Broken pipe from ('45.79.163.53', 57631)
+[28/Dec/2023 10:20:25] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 10:20:25,782] - Broken pipe from ('45.79.163.53', 57632)
+[28/Dec/2023 10:21:44] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 10:33:49,172] - Broken pipe from ('172.104.210.105', 59318)
+[28/Dec/2023 10:33:50] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 10:33:50,520] - Broken pipe from ('172.104.210.105', 59319)
+[28/Dec/2023 10:34:20] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 10:34:50] "HEAD / HTTP/1.1" 302 0
+[28/Dec/2023 10:37:15] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 10:37:18] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 10:53:48] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:04:35] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:08:13] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 12:08:13] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 12:12:50,422] - Broken pipe from ('45.79.163.53', 42406)
+[28/Dec/2023 12:13:17] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:19:15,226] - Broken pipe from ('45.79.168.172', 38259)
+[28/Dec/2023 12:19:16] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:19:16,617] - Broken pipe from ('45.79.168.172', 38260)
+[28/Dec/2023 12:19:37] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:22:31,571] - Broken pipe from ('198.74.56.46', 38550)
+[28/Dec/2023 12:22:32] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:22:33,576] - Broken pipe from ('198.74.56.46', 38551)
+[28/Dec/2023 12:22:48] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:26:02] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:30:07] "GET /.git/config HTTP/1.1" 302 0
+[28/Dec/2023 12:44:35] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 12:44:35] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 12:44:47] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 12:45:08] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 12:45:09] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[28/Dec/2023 12:54:12] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 13:22:15] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 13:49:02] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 13:49:03] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 13:57:52] code 400, message Bad request version ('À\x14À')
+[28/Dec/2023 13:57:52] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 13:59:56] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 14:22:09,579] - Broken pipe from ('45.79.163.53', 41063)
+[28/Dec/2023 14:22:20] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 14:23:43] code 400, message Bad request version ('ü\x19\x1a\x81÷ma$e\x11¯')
+[28/Dec/2023 14:23:43] You're accessing the development server over HTTPS, but it only supports HTTP.
+[28/Dec/2023 14:23:58] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 14:24:18] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 14:24:21] "GET /static/img/agroshop.png HTTP/1.1" 200 11778
+[28/Dec/2023 14:24:23] "GET /robots.txt HTTP/1.1" 302 0
+[28/Dec/2023 14:24:26] "GET /login/?next=/robots.txt HTTP/1.1" 200 3115
+[28/Dec/2023 14:24:29] "GET /sitemap.xml HTTP/1.1" 302 0
+[28/Dec/2023 14:24:31] "GET /login/?next=/sitemap.xml HTTP/1.1" 200 3116
+[28/Dec/2023 14:55:10,401] - Broken pipe from ('45.79.163.53', 42299)
+[28/Dec/2023 14:55:11] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 14:55:12,020] - Broken pipe from ('45.79.163.53', 42300)
+[28/Dec/2023 14:55:37] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:04:03,688] - Broken pipe from ('69.164.217.74', 33821)
+[28/Dec/2023 15:04:12] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:04:18,933] - Broken pipe from ('69.164.217.74', 33822)
+[28/Dec/2023 15:05:07] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:19:36] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:19:49] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:20:07] "GET /login/?next=/ HTTP/1.1" 200 3105
+[28/Dec/2023 15:20:46] "GET / HTTP/1.1" 302 0
+[28/Dec/2023 15:21:11] "GET / HTTP/1.0" 302 0

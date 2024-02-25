@@ -1,13 +1,50 @@
 {% extends 'admin/change_form.html' %}
 {% load static %}
 {% block content %}
+  <style>
+    .container {
+      background-color: #f8f9fa; 
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    #frutas-img {
+      width: 100%; 
+      max-width: 600px;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid black;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 100%; 
+        padding: 10px; 
+      }
+
+      #frutas-img {
+        max-width: 100%; 
+      }
+
+      #id_observacion {
+        width: 100%; 
+        max-width: 600px; 
+        box-sizing: border-box;
+        resize: vertical;
+      }
+    }
+  </style>
+
   <fieldset class="module">
     <div class="container">
-      <h2>Empiece a preparar su proximo pedido</h2>
-      <img src="{% static 'img/frutas-verduras.jpg' %}" width="800" height="300" style="border-radius: 10px; border: 1px solid black;">
-      <br>
+      <h2>Empiece a preparar su próximo pedido</h2>
+      <img id="frutas-img" src="{% static 'img/frutas-verduras.jpg' %}" alt="Frutas y verduras">
     </div>
-    <br>  
   </fieldset>
   {{ block.super }}
 {% endblock %}

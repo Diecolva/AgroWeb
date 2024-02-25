@@ -14,9 +14,9 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'django-insecure-k*fi7#t@g$$-mb_3@9gc#ok&u39lhztzhns0hmeadp=!h+!i#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
@@ -135,6 +135,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [STATIC_DIR]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.agroshop.cl'
+EMAIL_PORT = 465  # Usamos el puerto SMTP proporcionado (465)
+EMAIL_USE_TLS = False  # No usamos TLS ya que el puerto es SSL
+EMAIL_USE_SSL = True  # Usamos SSL para cifrado seguro
+EMAIL_HOST_USER = 'pedidos@agroshop.cl'  # Tu dirección de correo electrónico
+EMAIL_HOST_PASSWORD = 'pedidosagroshop'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

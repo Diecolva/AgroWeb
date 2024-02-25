@@ -1,55 +1,90 @@
 <!-- ver_detalle.html -->
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-        <title>Detalle</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+<head>
+    <title>Detalle</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-    </head>
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
 
-    <body class="container mt-3">
-        <header>
-            <div class="alert alert-success text-center display-3" role="alert">
-                <h1>Detalles de Orden</h1>
-            </div>
+<style>
+    body {
+        background-image: url("{% static 'img/fondo2.jpg' %}");
+        background-size: cover;
+        background-position: center;
+    }
+</style>
 
-            <div style="text-align: center;">
-                
-            </div>
+<body class="container mt-3">
+    <header>
+        <div class="alert alert-success text-center display-3" role="alert">
+            <h1>Detalles de Orden</h1>
+        </div>
 
-            <div style="background-color: #e6e6e6; border-radius: 10px; text-align: center;" >
-                <img src="{% static 'img/agroshop.png' %}" style="border-radius: 10px; border: 1px solid black; margin: 10px;">
-                <h4>Datos</h4>
-                <p style="margin: 20px;">Fecha: {{ orden.fecha }}</p>
-                <p style="margin: 20px;">Cliente: {{ orden.usuario }}</p>
-                <!-- Añade más campos según sea necesario -->
-                <hr>
+        <div style="text-align: center;"></div>
 
-                <h4>Productos y Cantidades</h4>
-                <ul style="margin: auto; list-style-type: none; padding: 0;">
+        <div style="background-color: #e6e6e6; border-radius: 10px; text-align: center;">
+            <h4>Datos</h4>
+            <h6 style="margin: 20px;">Fecha: {{ orden.fecha }}</h6>
+            <h6 style="margin: 20px;">Cliente: {{ orden.usuario }}</h6>
+	    <h6 style="margin: 20px;">Observación: {{ orden.observacion }}</h6> <!-- Aquí se agrega la observación -->
+            <hr>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Unidad</th>
+                        <!-- Agrega más encabezados según sea necesario -->
+                    </tr>
+                </thead>
+                <tbody>
                     {% for detalle in orden.detallesorden_set.all %}
-                        <li>
-                            <p>Producto: {{ detalle.producto }}</p>
-                            <p>Cantidad: {{ detalle.cantidad }}</p>
-                            <!-- Añade más campos según sea necesario -->
-                        </li>
+                        <tr>
+                            <td>{{ detalle.producto }}</td>
+                            <td>{{ detalle.cantidad }}</td>
+                            <td>{% if detalle.unidad %}{{ detalle.unidad }}{% endif %}</td>
+                            <!-- Agrega más celdas según sea necesario -->
+                        </tr>
                     {% endfor %}
-                </ul>    
-            </div>    
+                </tbody>
+            </table>
 
-        </header>    
-    </body>
+            <div class="d-flex justify-content-between">
+                <!-- Editar Compra Button (only if purchase is not confirmed) -->
+                {% if not orden.compra_confirmada %}
+                    <a href="{% url 'admin:inApp_orden_change' orden.id %}" class="btn btn-primary" style="margin: 10px;">Editar Compra</a>
+                {% endif %}
+            
+                <!-- Confirmar Compra Button -->
+                {% if not orden.compra_confirmada %}
+                    <form method="post" action="{% url 'confirmar' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success" name="orden_id" value="{{ orden.id }}" style="margin: 10px;">Confirmar Compra</button>
+                    </form>
+                {% endif %}
+            </div>
+            
+            <!-- Mostrar mensaje indicando que el pedido ya ha sido confirmado -->
+            {% if orden.compra_confirmada %}
+                <div class="d-flex justify-content-center" style="background-color: lightgreen;">
+                    <p style="color: black; font-weight: normal;">SU PEDIDO YA HA SIDO CONFIRMADO</p>
+        	    <div style="margin-top: 15px; display: flex; align-items: center; justify-content: center;">
+            		<i class="bi bi-cart-check" style="color: black; font-size: 40px; margin-left: -250px;"></i>
+                   </div>
+               </div>
+            {% endif %}
+    </header>
+</body>
 </html>

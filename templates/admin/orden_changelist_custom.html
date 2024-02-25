@@ -1,13 +1,244 @@
 {% extends 'admin/change_list.html' %}
 {% load static %}
 {% block content %}
-  <div style="background: rgba(0, 128, 0, 0.3); border-radius: 10px; text-align: center; width: 80%; margin: auto; display: flex; flex-direction: column; align-items: center;">
-    <h1>PEDIDOS</h1>
-    <img src="{% static 'img/frutas-verduras.jpg' %}" width="800" height="300" style="border-radius: 10px; border: 1px solid black; margin: 10px;">
-    <h3>Haga clic en una fecha para visualizar o editar un pedido</h3>
-    <br>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  .container {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: black; /* Para navegadores basados en WebKit, como Chrome y Safari */
+    text-stroke-width: 0.2px;
+    text-stroke-color: black;
+  }
+  .content{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+  }
+
+  .content-wrapper{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+  }
+
+  .responsive-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 10px;
+  }
+
+  .module {
+    
+  }
+
+  #result_list {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black; /* Establece el borde de la tabla a 3px de ancho y de color negro */
+  }
+  
+  #result_list th,
+  #result_list td {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    background: rgba(0, 128, 0, 0.3); /* Cambia el color de fondo de las celdas a verde calipso */
+    color: #333;
+  }
+  
+  #result_list th {
+    font-weight: bold;
+    background-color: white; /* Cambia el color de fondo de la cabecera a blanco */
+  }
+  
+  #result_list tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #result_list tr:hover {
+    background-color: #f2f2f2;
+  }
+
+  
+  .actions {
+    margin-top: 20px; /* Ajusta el margen superior si es necesario */
+    float: left;
+  }
+
+  .actions label {
+    margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
+  }
+
+  .actions select {
+    padding: 5px 10px; /* Ajusta el relleno */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    background-color: #f5f5f5; /* Cambia el color de fondo */
+  }
+
+  .actions button {
+    padding: 8px 20px; /* Ajusta el relleno */
+    background-color: #dc3545; /* Cambia el color de fondo del botón a rojo */
+    color: #fff; /* Cambia el color del texto a blanco */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  }
+
+  .actions button:hover {
+    background-color: #c82333; /* Cambia el color de fondo al pasar el ratón */
+  }
+
+  .action-counter {
+    margin-left: 10px; /* Ajusta el margen izquierdo */
+    color: #333; /* Cambia el color del texto */
+    font-weight: bold; /* Añade negrita */
+  }
+
+  .actions::before {
+    content: "Para eliminar, seleccione uno o más pedidos";
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: black; /* Para navegadores basados en WebKit, como Chrome y Safari */
+    text-stroke-width: 0.2px;
+    text-stroke-color: black;
+    display: block; /* Para que el contenido se muestre como un bloque */
+    font-size: 15px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    padding: 0px; /* Espacio interno */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 0px; /* Margen inferior */
+    max-width: 100%; /* Define el ancho máximo del contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    padding: 0px;
+}
+
+
+.action-counter{
+  font-size: 24px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  padding: 0px; /* Espacio interno */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 0px; /* Margen inferior */
+  max-width: 80%; /* Define el ancho máximo del contenedor */
+  margin: auto; /* Centra el contenedor horizontalmente */
+  padding: 0px;
+}
+
+.card::before{
+  content: "LISTA DE PEDIDOS";
+  display: block; /* Para que el contenido se muestre como un bloque */
+  font-size: 25px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  padding: 0px; /* Espacio interno */
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  color: #fff;
+  border: 1px solid black; /* Bordes redondeados */
+  margin-bottom: 0px; /* Margen inferior */
+}
+
+  .alert-success {
+    /* Estilos para la alerta de éxito */
+    background-color: #d4edda; /* Color de fondo */
+    border-color: #c3e6cb; /* Color del borde */
+    color: #155724; /* Color del texto */
+    padding: 20px; /* Espaciado interno mayor */
+    margin-bottom: 30px; /* Espaciado inferior mayor */
+    border: 2px solid transparent; /* Borde sólido transparente y más grueso */
+    border-radius: 15px; /* Bordes redondeados más grandes */
+    font-size: 18px; /* Tamaño del texto más grande */
+}
+
+.alert-success a {
+    /* Estilos para los enlaces dentro de la alerta */
+    color: #155724; /* Color del enlace */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.alert-success .close {
+    /* Estilos para el botón de cerrar */
+    color: #155724; /* Color del botón */
+}
+
+.container-2 {
+  text-align: center;
+  padding: 0px;
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: black; /* Para navegadores basados en WebKit, como Chrome y Safari */
+  text-stroke-width: 0.3px;
+  text-stroke-color: black;
+  display: block; /* Para que el contenido se muestre como un bloque */
+  font-weight: bold; /* Negrita */
+  padding: 0px; /* Espacio interno*/
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 0px; /* Margen inferior */
+  text-align: center; /* Alineación del texto */
+  max-width: 100%; /* Define el ancho máximo del contenedor */
+  margin: auto; /* Centra el contenedor horizontalmente */
+  padding: 0px; 
+}
+
+.container-2 img {
+  width: 50%;
+}
+
+.row {
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.selection {
+    font-size: 12px; /* Cambia el tamaño del texto */
+}
+
+
+ 
+  @media (max-width: 768px) {
+    .container {
+      width: 80vw; 
+    }
+  
+    .module {
+      width: 100%; 
+    }
+  }
+</style>
+    
+
+  <div class="container-2">
+    <h2>Gestión de pedidos</h2>
+    <img src="{% static 'img/frutas-verduras.jpg' %}" class="responsive-img">
+     <ul>
+      <li>Para añadir un nuevo pedido, haga clic en Añadir pedido
+      <li>Para ver, editar o confirmar un pedido existente, haga clic en Ver/Confirmar pedido.</li>
+    </ul>
     <fieldset class="module">
-      {{ block.super }}
     </fieldset>
   </div>
+	{{block.super}}
+
 {% endblock %}

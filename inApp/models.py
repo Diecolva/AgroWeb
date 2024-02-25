@@ -10,6 +10,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
+    sku = models.CharField(max_length=150, default='')
 
     def __str__(self):
         return self.nombre
@@ -27,6 +28,7 @@ class Orden(models.Model):
     fecha = models.DateField(default=timezone.now) 
     hora = models.TimeField(auto_now_add=True, validators=[validar_rango_hora])
     observacion = models.CharField(max_length=500, blank=True)
+    compra_confirmada = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         # Si no se ha establecido el usuario y el usuario está autenticado, asigna el usuario autenticado a la orden
@@ -37,11 +39,11 @@ class Orden(models.Model):
 
     def __str__(self):
         productos_str = ", ".join(str(producto) for producto in self.productos.all())
-        return f"{self.usuario} - {self.fecha} - {self.hora} - Productos: {productos_str}"
+        return f"con los productos: {productos_str}"
 
     class Meta:
-        verbose_name = 'Orden'
-        verbose_name_plural = 'Ordenes'    
+        verbose_name = 'Pedido'
+        verbose_name_plural = 'Pedidos'    
     
 
     
@@ -50,6 +52,7 @@ class DetallesOrden(models.Model):
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=False, blank=False)
     cantidad = models.DecimalField(max_digits=65, decimal_places=1, default=0)
+    unidad = models.CharField(max_length=10, default='KG', blank=False, null=False)
 
     class Meta:
         verbose_name = 'Producto y Cantidad'

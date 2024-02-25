@@ -38,6 +38,14 @@ class CustomUserAdmin(UserAdmin):
     custom_first_name.short_description = 'RUT'
     custom_last_name.short_description = 'Dirección'
 
+    def save_model(self, request, obj, form, change):
+        # Llama al método save_model del padre para guardar el usuario
+        super().save_model(request, obj, form, change)
+        
+        # Asigna el usuario como staff
+        obj.is_staff = True
+        obj.save()
+
 
     
 class DetalleOrdenInline(admin.TabularInline):
@@ -45,19 +53,13 @@ class DetalleOrdenInline(admin.TabularInline):
     form = DetalleOrdenForm
     extra = 1
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == 'producto' and request.user.username == 'CristianAG':
-            allowed_product_name = 'Producto1'
-            kwargs['queryset'] = Producto.objects.filter(nombre=allowed_product_name)
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
 class OrdenAdmin(admin.ModelAdmin):
     list_display = ['fecha', 'usuario', 'hora', 'observacion', 'ver_detalle_button']
 
     def ver_detalle_button(self, obj):
-        return format_html('<a href="{}" target="_blank">Confirmar Pedido</a>', reverse('admin:ver_detalle', args=[obj.id]))
-
-    ver_detalle_button.short_description = 'Confirmar'
+        return format_html('<button class="btn btn-success" onclick="window.open(\'{}\', \'_blank\')">Ver/Confirmar pedido</button>',
+                           reverse('admin:ver_detalle', args=[obj.id]))
+    ver_detalle_button.short_description = 'Acciones'
 
 
     def get_urls(self):
@@ -66,6 +68,14 @@ class OrdenAdmin(admin.ModelAdmin):
             path('ver_detalle/<int:orden_id>/', self.ver_detalle_view, name='ver_detalle'),
         ]
         return custom_urls + urls
+
+    def get_queryset(self, request):
+        # Filtra las órdenes basándote en la identificación del usuario actual
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs  # Los superusuarios pueden ver todas las órdenes
+        else:
+            return qs.filter(usuario=request.user)
 
     def ver_detalle_view(self, request, orden_id):
         # Obtener la orden o devolver un error 404 si no existe
@@ -83,6 +93,13 @@ class OrdenAdmin(admin.ModelAdmin):
     change_form_template = 'admin/orden_change_form_custom.html'
 
     date_hierarchy = 'fecha'
+
+    def get_list_display_links(self, request, list_display):
+        """
+        Retorna un diccionario de enlaces de campo de visualización que serán mostrados en la lista de objetos.
+        Si no quieres que ningún campo sea un enlace, debes devolver None.
+        """
+        return None
 
     def save_model(self, request, obj, form, change):
         # Asigna el usuario autenticado al objeto antes de guardarlo
@@ -114,6 +131,13 @@ class NombreProductoFilter(admin.SimpleListFilter):
 
 class ProductoAdmin(admin.ModelAdmin):
     list_filter = [NombreProductoFilter]
+    list_display = ['nombre', 'get_sku_uppercase']  # Use a custom method for sku
+    ordering = ['sku']
+
+    def get_sku_uppercase(self, obj):
+        return obj.sku.upper()  # Convert sku to uppercase
+
+    get_sku_uppercase.short_description = 'SKU' 
 
 admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Orden, OrdenAdmin)

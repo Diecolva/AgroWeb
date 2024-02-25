@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from inApp.models import Producto, Orden, DetallesOrden
-from django.forms import CheckboxSelectMultiple
+from django.forms import CheckboxSelectMultiple, HiddenInput
 
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
@@ -19,6 +19,7 @@ class OrdenForm(forms.ModelForm):
         widgets = {
             'productos': CheckboxSelectMultiple,
             'observacion': forms.Textarea(attrs={'placeholder': 'En caso de tener alguna indicación adicional, por favor escriba en este campo.'}),
+	    'compra_confirmada': HiddenInput(),
         }
 
     # def get_form(self, request, obj=None, **kwargs):
@@ -33,6 +34,13 @@ class OrdenForm(forms.ModelForm):
 
 
 class DetalleOrdenForm(forms.ModelForm):
+    UNIDAD_CHOICES = [
+        ('KG', 'KG'),
+        ('Unidad(es)', 'Unidad(es)'),
+    ]
+
+    unidad = forms.ChoiceField(choices=UNIDAD_CHOICES, label='Unidad de medida')
+
     class Meta:
         model = DetallesOrden
         fields = '__all__'
@@ -41,12 +49,12 @@ class DetalleOrdenForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if 'orden' in self.fields:
             self.fields['orden'].widget = forms.HiddenInput()
-            
-            
 
     def save(self, commit=True):
         detalle_orden = super().save(commit=False)
-        detalle_orden.orden = self.instance.orden  
+        detalle_orden.orden = self.instance.orden
+
         if commit:
             detalle_orden.save()
+
         return detalle_orden
